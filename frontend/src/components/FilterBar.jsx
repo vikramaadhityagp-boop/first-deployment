@@ -7,7 +7,7 @@ export default function FilterBar({ filters, onChange }) {
   const set = (key, val) => onChange({ ...filters, [key]: val });
 
   return (
-    <aside className="w-56 shrink-0 space-y-6">
+    <aside className="w-full shrink-0 space-y-6 md:w-56">
       <div>
         <h3 className="text-neon font-semibold mb-2 text-sm uppercase tracking-wider">Genre</h3>
         <div className="space-y-1">

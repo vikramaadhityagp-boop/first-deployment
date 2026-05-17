@@ -18,14 +18,21 @@ const connectDB = async () => {
 };
 
 app.use(async (req, res, next) => {
-  await connectDB();
-  next();
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Routes
 app.use('/games', require('./routes/games'));
 app.use('/auth', require('./routes/auth'));
 app.use('/orders', require('./routes/orders'));
+app.use('/api/games', require('./routes/games'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/orders', require('./routes/orders'));
 
 // Error handler
 app.use((err, req, res, next) => {
@@ -33,5 +40,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ success: false, message: err.message || 'Server error', data: null });
 });
 
-module.exports.handler = serverless(app);
+module.exports = app;
 module.exports.app = app;
+module.exports.handler = serverless(app);

@@ -6,10 +6,22 @@ const Game = require('../models/Game');
 const User = require('../models/User');
 const { auth } = require('../middleware/authMiddleware');
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+let razorpay;
+
+const getRazorpay = () => {
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    throw Object.assign(new Error('Razorpay environment variables are not configured'), { status: 500 });
+  }
+
+  if (!razorpay) {
+    razorpay = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
+    });
+  }
+
+  return razorpay;
+};
 
 // POST /orders - create order + Razorpay order
 router.post('/', auth, async (req, res, next) => {
@@ -29,7 +41,7 @@ router.post('/', auth, async (req, res, next) => {
     });
 
     // Create Razorpay order (amount in paise)
-    const rzpOrder = await razorpay.orders.create({
+    const rzpOrder = await getRazorpay().orders.create({
       amount: Math.round(totalAmount * 100),
       currency: 'INR',
       receipt: `rcpt_${Date.now()}`,
@@ -54,6 +66,10 @@ router.post('/', auth, async (req, res, next) => {
 router.post('/verify', auth, async (req, res, next) => {
   try {
     const { razorpayOrderId, razorpayPaymentId, razorpaySignature } = req.body;
+    if (!process.env.RAZORPAY_KEY_SECRET) {
+      throw Object.assign(new Error('Razorpay environment variables are not configured'), { status: 500 });
+    }
+
     const body = razorpayOrderId + '|' + razorpayPaymentId;
     const expectedSig = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
 
