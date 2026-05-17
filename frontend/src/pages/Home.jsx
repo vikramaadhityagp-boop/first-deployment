@@ -5,18 +5,18 @@ import GameCard from '../components/GameCard';
 import FilterBar from '../components/FilterBar';
 
 const FALLBACK_GAMES = [
-  { _id: '1', title: 'God of War Ragnarök', genre: 'Action', platform: 'PlayStation 5', price: 69.99, discountPrice: 49.99, rating: 4.9, stock: 20, image: 'https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg' },
-  { _id: '2', title: 'Elden Ring', genre: 'RPG', platform: 'PC', price: 59.99, discountPrice: 39.99, rating: 4.8, stock: 15, image: 'https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg' },
-  { _id: '3', title: 'Spider-Man 2', genre: 'Action', platform: 'PlayStation 5', price: 69.99, discountPrice: 59.99, rating: 4.8, stock: 18, image: 'https://upload.wikimedia.org/wikipedia/en/9/9c/Marvel%27s_Spider-Man_2_cover.jpg' },
-  { _id: '4', title: 'Hogwarts Legacy', genre: 'RPG', platform: 'PC', price: 59.99, discountPrice: 34.99, rating: 4.6, stock: 25, image: 'https://upload.wikimedia.org/wikipedia/en/4/4f/Hogwarts_Legacy.jpg' },
-  { _id: '5', title: 'FIFA 24', genre: 'Sports', platform: 'PC', price: 59.99, discountPrice: 29.99, rating: 4.2, stock: 30, image: 'https://upload.wikimedia.org/wikipedia/en/a/a4/EA_Sports_FC_24_cover.jpg' },
-  { _id: '6', title: 'Zelda: Tears of the Kingdom', genre: 'Adventure', platform: 'Nintendo Switch', price: 69.99, discountPrice: 59.99, rating: 4.9, stock: 12, image: 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Legend_of_Zelda%3B_Tears_of_the_Kingdom_cover.jpg' },
-  { _id: '7', title: 'Cyberpunk 2077', genre: 'RPG', platform: 'PC', price: 49.99, discountPrice: 19.99, rating: 4.5, stock: 22, image: 'https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg' },
-  { _id: '8', title: 'Forza Horizon 5', genre: 'Racing', platform: 'Xbox Series X', price: 59.99, discountPrice: 39.99, rating: 4.7, stock: 17, image: 'https://upload.wikimedia.org/wikipedia/en/4/4e/Forza_Horizon_5_cover.jpg' },
-  { _id: '9', title: 'Resident Evil 4', genre: 'Horror', platform: 'PC', price: 59.99, discountPrice: 39.99, rating: 4.7, stock: 14, image: 'https://upload.wikimedia.org/wikipedia/en/8/8b/Resident_Evil_4_remake_cover_art.jpg' },
-  { _id: '10', title: 'Starfield', genre: 'RPG', platform: 'Xbox Series X', price: 69.99, discountPrice: 49.99, rating: 4.3, stock: 20, image: 'https://upload.wikimedia.org/wikipedia/en/4/47/Starfield_game_cover.jpg' },
-  { _id: '11', title: 'Mortal Kombat 1', genre: 'Action', platform: 'PC', price: 69.99, discountPrice: 44.99, rating: 4.4, stock: 16, image: 'https://upload.wikimedia.org/wikipedia/en/c/c4/Mortal_Kombat_1_cover_art.jpg' },
-  { _id: '12', title: 'Mario Kart 8 Deluxe', genre: 'Racing', platform: 'Nintendo Switch', price: 59.99, discountPrice: 49.99, rating: 4.8, stock: 28, image: 'https://upload.wikimedia.org/wikipedia/en/6/64/Mario_Kart_8_Deluxe_box_art.jpg' },
+  { _id: '1', title: 'God of War Ragnarök', genre: 'Action', platform: ['PS5'], price: 69.99, discountPrice: 49.99, rating: 4.9, stock: 20, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=God+of+War' },
+  { _id: '2', title: 'Elden Ring', genre: 'RPG', platform: ['PC'], price: 59.99, discountPrice: 39.99, rating: 4.8, stock: 15, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Elden+Ring' },
+  { _id: '3', title: 'Spider-Man 2', genre: 'Action', platform: ['PS5'], price: 69.99, discountPrice: 59.99, rating: 4.8, stock: 18, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Spider-Man+2' },
+  { _id: '4', title: 'Hogwarts Legacy', genre: 'RPG', platform: ['PC'], price: 59.99, discountPrice: 34.99, rating: 4.6, stock: 25, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Hogwarts+Legacy' },
+  { _id: '5', title: 'FIFA 24', genre: 'Sports', platform: ['PC', 'PS5'], price: 59.99, discountPrice: 29.99, rating: 4.2, stock: 30, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=FIFA+24' },
+  { _id: '6', title: 'Zelda: Tears of the Kingdom', genre: 'Action', platform: ['Nintendo Switch'], price: 69.99, discountPrice: 59.99, rating: 4.9, stock: 12, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Zelda+TOTK' },
+  { _id: '7', title: 'Cyberpunk 2077', genre: 'RPG', platform: ['PC', 'PS5'], price: 49.99, discountPrice: 19.99, rating: 4.5, stock: 22, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Cyberpunk+2077' },
+  { _id: '8', title: 'Forza Horizon 5', genre: 'Racing', platform: ['Xbox', 'PC'], price: 59.99, discountPrice: 39.99, rating: 4.7, stock: 17, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Forza+Horizon+5' },
+  { _id: '9', title: 'Resident Evil 4', genre: 'Action', platform: ['PC', 'PS5'], price: 59.99, discountPrice: 39.99, rating: 4.7, stock: 14, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Resident+Evil+4' },
+  { _id: '10', title: 'Starfield', genre: 'RPG', platform: ['Xbox', 'PC'], price: 69.99, discountPrice: 49.99, rating: 4.3, stock: 20, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Starfield' },
+  { _id: '11', title: 'Mortal Kombat 1', genre: 'FPS', platform: ['PC', 'PS5'], price: 69.99, discountPrice: 44.99, rating: 4.4, stock: 16, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Mortal+Kombat+1' },
+  { _id: '12', title: 'Mario Kart 8 Deluxe', genre: 'Racing', platform: ['Nintendo Switch'], price: 59.99, discountPrice: 49.99, rating: 4.8, stock: 28, coverImage: 'https://placehold.co/400x560/1a1a2e/00ff88?text=Mario+Kart+8' },
 ];
 
 export default function Home() {
